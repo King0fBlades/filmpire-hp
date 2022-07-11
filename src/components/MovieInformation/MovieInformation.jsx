@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import {
 	Modal,
 	Typography,
@@ -26,15 +26,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 import useStyles from './styles';
-import { useGetMovieQuery } from '../../services/TMDB';
+import {
+	useGetMovieQuery,
+	useGetRecommendationsQuery,
+} from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import { MovieList } from '..';
 
 const MovieInformation = () => {
 	const { id } = useParams();
 	const { data, isFetching, error } = useGetMovieQuery(id);
 	const classes = useStyles();
 	const dispatch = useDispatch();
+	const [open, setOpen] = useState(false);
+	const filterVideosByName = (array, query) => {
+		return array.filter(
+			(el) => el.name.toLowerCase().indexOf(query.toLowerCase()) != -1
+		);
+	};
+
+	const { data: recommendations, isFetching: isRecommendationFetching } =
+		useGetRecommendationsQuery({
+			list: '/recommendations',
+			movie_id: id,
+		});
 
 	const isMovieFavorited = false;
 	const isMovieWatchlisted = false;
@@ -59,7 +75,7 @@ const MovieInformation = () => {
 	}
 
 	return (
-		<Grid type="container" className={classes.containerSpaceAround}>
+		<Grid container className={classes.containerSpaceAround}>
 			<Grid item sm={12} lg={5}>
 				<img
 					className={classes.poster}
@@ -170,7 +186,11 @@ const MovieInformation = () => {
 								>
 									IMDB
 								</Button>
-								<Button onClick={() => {}} href="#" endIcon={<Theaters />}>
+								<Button
+									onClick={() => setOpen(true)}
+									href="#"
+									endIcon={<Theaters />}
+								>
 									Trailer
 								</Button>
 							</ButtonGroup>
@@ -210,6 +230,40 @@ const MovieInformation = () => {
 					</div>
 				</Grid>
 			</Grid>
+			<Box marginTop="5rem" width="100%">
+				<Typography variant="h3" gutterBottom align="center">
+					You might also like
+				</Typography>
+				{recommendations ? (
+					<MovieList movies={recommendations} numberOfMovies={12} />
+				) : (
+					<Box>Sorry, nothing was found.</Box>
+				)}
+			</Box>
+			<Modal
+				closeAfterTransition
+				className={classes.modal}
+				open={open}
+				onClose={() => setOpen(false)}
+			>
+				{data?.videos?.results && (
+					<iframe
+						autoPlay
+						className={classes.video}
+						frameBorder="0"
+						title="Trailer"
+						src={`https://www.youtube.com/embed/${
+							filterVideosByName(data.videos.results, 'official trailer')[0]
+								?.key
+								? filterVideosByName(data.videos.results, 'official trailer')[0]
+										?.key
+								: data.videos.results[0].key
+						}`}
+						allow="autoplay"
+						allowFullScreen
+					/>
+				)}
+			</Modal>
 		</Grid>
 	);
 };

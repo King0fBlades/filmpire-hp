@@ -5,6 +5,7 @@ export default makeStyles((theme) => ({
 		display: 'flex',
 		justifyContent: 'space-around',
 		margin: '10px 0 !important',
+		flexWrap: 'wrap',
 		[theme.breakpoints.down('md')]: {
 			flexDirection: 'column',
 			flexWrap: 'wrap',
@@ -54,6 +55,20 @@ export default makeStyles((theme) => ({
 		[theme.breakpoints.down('xl')]: {
 			flexDirection: 'column',
 			justifyContent: 'center',
+		},
+	},
+	modal: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	video: {
+		width: '50%',
+		height: '50%',
+		pointerEvents: 'auto',
+		[theme.breakpoints.down('md')]: {
+			width: '90%',
+			height: '90%',
 		},
 	},
 }));

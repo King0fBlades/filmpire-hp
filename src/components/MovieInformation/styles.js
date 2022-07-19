@@ -15,7 +15,14 @@ export default makeStyles((theme) => ({
 		borderRadius: '20px',
 		boxShadow: '0.5em 1em 1em rgb(64, 64, 70)',
 		width: '90%',
-		[theme.breakpoints.down('md')]: {
+		[theme.breakpoints.down('lg')]: {
+			display: 'flex',
+			alignItems: 'center',
+			margin: '0 auto',
+			width: '50%',
+			marginBottom: '30px',
+		},
+		[theme.breakpoints.down('sm')]: {
 			margin: '0 auto',
 			width: '100%',
 			height: '350px',
@@ -50,11 +57,12 @@ export default makeStyles((theme) => ({
 	},
 	buttonsContainer: {
 		display: 'flex',
-		justifyContent: 'space-between',
+		justifyContent: 'space-around',
 		width: '100%',
 		[theme.breakpoints.down('xl')]: {
 			flexDirection: 'column',
 			justifyContent: 'center',
+			margin: ' 5px 0 !important',
 		},
 	},
 	modal: {

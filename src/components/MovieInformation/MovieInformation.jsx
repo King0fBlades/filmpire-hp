@@ -14,7 +14,7 @@ import {
 	Movie as MovieIcon,
 	Theaters,
 	Language,
-	PlusOne,
+	Add,
 	Favorite,
 	FavoriteBorderOutlined,
 	Remove,
@@ -253,14 +253,14 @@ const MovieInformation = () => {
 								<Button
 									onClick={addToFavorite}
 									endIcon={
-										isMovieFavorited ? <FavoriteBorderOutlined /> : <Favorite />
+										isMovieFavorited ? <Favorite /> : <FavoriteBorderOutlined />
 									}
 								>
 									{isMovieFavorited ? 'Unfavorite' : 'Favorite'}
 								</Button>
 								<Button
 									onClick={addToWatchlist}
-									endIcon={isMovieWatchlisted ? <Remove /> : <PlusOne />}
+									endIcon={isMovieWatchlisted ? <Remove /> : <Add />}
 								>
 									Watchlist
 								</Button>

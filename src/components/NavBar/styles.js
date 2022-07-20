@@ -29,6 +29,7 @@ export default makeStyles((theme) => ({
 		width: drawerWidth,
 	},
 	linkButton: {
+		minWidth: 'none',
 		minHeight: 'none',
 		'&:hover': {
 			color: 'white !important',

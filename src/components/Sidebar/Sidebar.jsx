@@ -65,8 +65,8 @@ const Sidebar = ({ setMobileOpen }) => {
 					<Link
 						key={value}
 						className={classes.links}
-						to={'/'}
-						//to={`/${label.toLowerCase()}`}
+						//to={'/'}
+						to={`/${label.toLowerCase()}`}
 					>
 						<ListItem
 							onClick={() => dispatch(selectGenreOrCategory(value))}
@@ -96,8 +96,8 @@ const Sidebar = ({ setMobileOpen }) => {
 						<Link
 							key={name}
 							className={classes.links}
-							to={'/'}
-							//to={`/${name.toLowerCase()}`}
+							//to={'/'}
+							to={`/${name.toLowerCase()}`}
 						>
 							<ListItem
 								onClick={() => dispatch(selectGenreOrCategory(id))}

@@ -1,4 +1,5 @@
 {
+	"homepage": "https://github.com/King0fBlades/filmpire-hp",
 	"name": "filmpire_hp",
 	"version": "0.1.0",
 	"private": true,
@@ -22,8 +23,10 @@
 		"web-vitals": "^1.0.1"
 	},
 	"scripts": {
-		"start": "react-scripts --openssl-legacy-provider start",
+		"start": "react-scripts start",
 		"build": "react-scripts build",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
@@ -45,5 +48,7 @@
 			"last 1 safari version"
 		]
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"gh-pages": "^4.0.0"
+	}
 }

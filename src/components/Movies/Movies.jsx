@@ -6,15 +6,18 @@ import {
 	Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
-
+import { useParams } from 'react-router-dom';
 import { useGetMoviesQuery } from '../../services/TMDB';
 import { FeaturedMovie, MovieList, Pagination } from '..';
 
 const Movies = () => {
 	const [page, setPage] = useState(1);
-	const { genreIdOrCategoryName, searchQuery } = useSelector(
-		(state) => state.currentGenreOrCategory
-	);
+	const params = useParams();
+	const { genreIdOrCategoryName, searchQuery } = useSelector((state) => {
+		console.log('State: ', state);
+		console.log('params: ', params);
+		return state.currentGenreOrCategory;
+	});
 	const { data, error, isFetching } = useGetMoviesQuery({
 		genreIdOrCategoryName,
 		page,

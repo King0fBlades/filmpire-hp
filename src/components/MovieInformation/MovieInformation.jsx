@@ -310,7 +310,7 @@ const MovieInformation = () => {
 								?.key
 								? filterVideosByName(data.videos.results, 'official trailer')[0]
 										?.key
-								: data.videos.results[0].key
+								: data.videos.results[0]?.key
 						}`}
 						allow="autoplay"
 						allowFullScreen

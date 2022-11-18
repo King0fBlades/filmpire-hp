@@ -28,6 +28,9 @@ const App = () => {
 					<Route exact path="/profile/:id">
 						<Profile />
 					</Route>
+					<Route exact path={['/:name']}>
+						<Movies />
+					</Route>
 				</Switch>
 			</main>
 		</div>
